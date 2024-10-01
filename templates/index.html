@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Pet and Joke</title>
+</head>
+<body>
+  <h1>Hello world, This is a random pet. Hope you'll like it here!</h1>
+
+  <!-- Display the dog image if available -->
+  {% if result %}
+  <img src="{{ result }}" alt="Random Dog Image"/>
+  {% else %}
+  <p>No random dog image found.</p>
+  {% endif %}
+
+  <h1>Here's a Random Joke for You!</h1>
+
+  <h1>Random Joke</h1>
+  <p id="joke"></p>
+  <button onclick="getJoke()">Tell me a joke!</button>
+  <script>
+    function getJoke() {
+      fetch('https://official-joke-api.appspot.com/random_joke')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('joke').textContent = data.setup + " " + data.punchline;
+        })
+        .catch(error => {
+          console.error('Error fetching joke:', error);
+          document.getElementById('joke').textContent = 'Oops! Something went wrong. Try again later.';
+        });
+    }
+  </script>
+
+  <!-- Display the joke setup if available
+  {% if setup %}
+  <p>{{ setup }}</p>
+  {% else %}
+  <p>No joke setup found.</p>
+  {% endif %}
+
+  Display the punchline if available
+  {% if punchline %}
+  <p>{{ punchline }}</p>
+  {% else %}
+  <p>No joke punchline found.</p>
+  {% endif %} -->
+
+</body>
+</html>
