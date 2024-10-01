@@ -18,6 +18,7 @@ def randomJoke(request):
 def joke_view(request):
   response = requests.get('https://official-joke-api.appspot.com/random_joke')
   joke_data = response.json()
+# Those are my jokes
 
   context = {
       'setup': joke_data.get('setup'),
